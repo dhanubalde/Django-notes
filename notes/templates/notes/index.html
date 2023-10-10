@@ -1,15 +1,31 @@
-<form method="POST" action="/">
-    {% csrf_token %}
-    <textarea name="body"></textarea>
-    <input type="submit" value="Add Task" />
-</form>
-
-<div>
-    {% for task in tasks %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <h1>Add New Task</h1>
+        <form method="POST" action="/">
+            {% csrf_token %}
+            <textarea name="body"></textarea>
+            <input type="submit" value="Add Task" />
+        </form>
+        
         <div>
-            <a href="{% url 'task' task.id %}">{{task.body}}</a>
-            <small>Updated {{task.updated|timesince}} ago</small>
-            <hr>
+            {% for task in tasks %}
+                <div>
+                    <a href="{% url 'task' task.id %}">{{task.body}}</a>
+                    <small>Updated {{task.updated|timesince}} ago</small>
+                    <hr>
+                </div>
+            {% endfor %}
         </div>
-    {% endfor %}
-</div>
+        
+
+    </body>
+</html>
